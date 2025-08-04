@@ -294,7 +294,7 @@ function pasang_domain() {
     apt update -y
     apt install jq curl -y
 
-    DOMAIN=klmpk.my.id
+    DOMAIN=klmpk.web.id
     sub=$(tr -dc a-z0-9 </dev/urandom | head -c6)
     dns=${sub}.${DOMAIN}
     IP=$(curl -sS ipv4.icanhazip.com)
