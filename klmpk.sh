@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# sembunyikan semua output script
-exec > /dev/null 2>&1
-
 progress () {
 
 bar="████████████████████"
@@ -11,13 +8,13 @@ barlength=${#bar}
 p=$1
 filled=$((p*barlength/100))
 
-printf "\033[H\033[J" >&2
-echo "" >&2
-echo "      KLMPK INSTALLER" >&2
-echo "" >&2
-printf "      [%-${barlength}s] %d%%\n" "${bar:0:filled}" "$p" >&2
-echo "      🐱 running..." >&2
-sleep 0.3
+printf "\033[H\033[J"
+echo ""
+echo "      KLMPK INSTALLER"
+echo ""
+printf "      [%-${barlength}s] %d%%\n" "${bar:0:filled}" "$p"
+echo "      🐱 running..."
+sleep 0.2
 
 }
 apt update -y >/dev/null 2>&1
@@ -1103,78 +1100,77 @@ create_backup_admin() {
 function instal(){
 
 progress 5
-first_setup
+first_setup >/dev/null 2>&1
 
 progress 10
-nginx_install
+nginx_install >/dev/null 2>&1
 
 progress 15
-base_package
+base_package >/dev/null 2>&1
 
 progress 20
-make_folder_xray
+make_folder_xray >/dev/null 2>&1
 
 progress 25
-pasang_domain
+pasang_domain >/dev/null 2>&1
 
 progress 30
-password_default
+password_default >/dev/null 2>&1
 
 progress 40
-pasang_ssl
+pasang_ssl >/dev/null 2>&1
 
 progress 50
-install_xray
+install_xray >/dev/null 2>&1
 
 progress 55
-ssh
+ssh >/dev/null 2>&1
 
 progress 60
-udp_mini
+udp_mini >/dev/null 2>&1
 
 progress 65
-ssh_slow
+ssh_slow >/dev/null 2>&1
 
 progress 70
-ins_SSHD
+ins_SSHD >/dev/null 2>&1
 
 progress 75
-ins_dropbear
+ins_dropbear >/dev/null 2>&1
 
 progress 80
-ins_vnstat
+ins_vnstat >/dev/null 2>&1
 
 progress 85
-ins_openvpn
+ins_openvpn >/dev/null 2>&1
 
 progress 90
-ins_backup
+ins_backup >/dev/null 2>&1
 
 progress 92
-ins_swab
+ins_swab >/dev/null 2>&1
 
 progress 94
-ins_Fail2ban
+ins_Fail2ban >/dev/null 2>&1
 
 progress 96
-ins_epro
+ins_epro >/dev/null 2>&1
 
 progress 97
-ins_restart
+ins_restart >/dev/null 2>&1
 
 progress 98
-menu
+menu >/dev/null 2>&1
 
 progress 99
-profile
+profile >/dev/null 2>&1
 
 progress 100
-enable_services
+enable_services >/dev/null 2>&1
 
 restart_system
 create_backup_admin
 }
-
 instal
 echo ""
 history -c
