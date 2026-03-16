@@ -1,9 +1,34 @@
 #!/bin/bash
 ### Color
-apt upgrade -y
-apt update -y
-apt install curl
-apt install wondershaper -y
+cat_run() {
+frames=(
+"🐱   "
+" 🐱  "
+"  🐱 "
+"   🐱"
+"    🐱"
+"   🐱"
+"  🐱 "
+" 🐱  "
+)
+
+while true; do
+for f in "${frames[@]}"; do
+clear
+echo ""
+echo "   KLMPK VPN INSTALLER"
+echo ""
+echo "   Installing system..."
+echo ""
+echo "   $f"
+sleep 0.08
+done
+done
+}
+apt update -y >/dev/null 2>&1
+apt upgrade -y >/dev/null 2>&1
+apt install curl -y >/dev/null 2>&1
+apt install wondershaper -y >/dev/null 2>&1
 mkdir /etc/xray/IP
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo "$MYIP" >/etc/xray/IP
@@ -1109,7 +1134,16 @@ clear
     restart_system
 	create_backup_admin
 }
+
+# Jalankan animasi
+cat_run &
+ANIM=$!
+
+# Jalankan install
 instal
+
+# Matikan animasi
+kill $ANIM
 echo ""
 history -c
 rm -rf /root/menu
