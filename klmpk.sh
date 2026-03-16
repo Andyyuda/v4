@@ -25,7 +25,7 @@ ipsaya=$(wget -qO- ipinfo.io/ip)
 echo "$ipsaya" >>/etc/xray/IP
 TIMES="10"
 CHATID="5808979739"
-KEY="6313005117:AAHeRxvQ-KWKbf4CU392ZY_xkHl7ZzSEf9E"
+KEY="6674408306:AAG7NhNR9004MV1yr528Ax3LWQ545AvwJGQ"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 # ===================
 clear
