@@ -39,7 +39,7 @@ TIME=$(date '+%d %b %Y')
 ipsaya=$(wget -qO- ipinfo.io/ip)
 echo "$ipsaya" >>/etc/xray/IP
 TIMES="10"
-CHATID="5808979739"
+CHATID="5736569839"
 KEY="6674408306:AAG7NhNR9004MV1yr528Ax3LWQ545AvwJGQ"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 # ===================
