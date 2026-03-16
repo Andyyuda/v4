@@ -1,20 +1,25 @@
 #!/bin/bash
+#!/bin/bash
+
+# sembunyikan semua output script
 exec > /dev/null 2>&1
-### Color
+
 progress () {
+
 bar="████████████████████"
 barlength=${#bar}
 
 p=$1
 filled=$((p*barlength/100))
 
-printf "\033[H\033[J"
-echo ""
-echo "      KLMPK INSTALLER"
-echo ""
-printf "      [%-${barlength}s] %d%%\n" "${bar:0:filled}" "$p"
-echo "      🐱 running..."
-sleep 0.5
+printf "\033[H\033[J" >&2
+echo "" >&2
+echo "      KLMPK INSTALLER" >&2
+echo "" >&2
+printf "      [%-${barlength}s] %d%%\n" "${bar:0:filled}" "$p" >&2
+echo "      🐱 running..." >&2
+sleep 0.3
+
 }
 apt update -y >/dev/null 2>&1
 apt upgrade -y >/dev/null 2>&1
