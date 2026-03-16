@@ -1,7 +1,6 @@
 #!/bin/bash
 
 progress () {
-
 bar="████████████████████"
 barlength=${#bar}
 
@@ -14,8 +13,7 @@ echo "      KLMPK INSTALLER"
 echo ""
 printf "      [%-${barlength}s] %d%%\n" "${bar:0:filled}" "$p"
 echo "      🐱 running..."
-sleep 0.2
-
+sleep 0.5
 }
 apt update -y >/dev/null 2>&1
 apt upgrade -y >/dev/null 2>&1
