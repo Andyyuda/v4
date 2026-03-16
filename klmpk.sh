@@ -1,29 +1,19 @@
 #!/bin/bash
 ### Color
-cat_run() {
-frames=(
-"🐱   "
-" 🐱  "
-"  🐱 "
-"   🐱"
-"    🐱"
-"   🐱"
-"  🐱 "
-" 🐱  "
-)
+progress () {
+bar="████████████████████"
+barlength=${#bar}
 
-while true; do
-for f in "${frames[@]}"; do
-clear
+p=$1
+filled=$((p*barlength/100))
+
+printf "\033[H\033[J"
 echo ""
-echo "   KLMPK VPN INSTALLER"
+echo "      KLMPK INSTALLER"
 echo ""
-echo "   Installing system..."
-echo ""
-echo "   $f"
-sleep 0.08
-done
-done
+printf "      [%-${barlength}s] %d%%\n" "${bar:0:filled}" "$p"
+echo "      🐱 running..."
+sleep 0.5
 }
 apt update -y >/dev/null 2>&1
 apt upgrade -y >/dev/null 2>&1
@@ -1105,45 +1095,81 @@ create_backup_admin() {
     $URL >/dev/null 2>&1
 }
 
-# Fingsi Install Script
 function instal(){
-clear
-    first_setup
-    nginx_install
-    base_package
-    make_folder_xray
-    pasang_domain
-    password_default
-    pasang_ssl
-    install_xray
-    ssh
-    udp_mini
-    ssh_slow
-    ins_SSHD
-    ins_dropbear
-    ins_vnstat
-    ins_openvpn
-    ins_backup
-    ins_swab
-    ins_Fail2ban
-    ins_epro
-    ins_restart
-    menu
-    profile
-    enable_services
-    restart_system
-	create_backup_admin
+
+progress 5
+first_setup
+
+progress 10
+nginx_install
+
+progress 15
+base_package
+
+progress 20
+make_folder_xray
+
+progress 25
+pasang_domain
+
+progress 30
+password_default
+
+progress 40
+pasang_ssl
+
+progress 50
+install_xray
+
+progress 55
+ssh
+
+progress 60
+udp_mini
+
+progress 65
+ssh_slow
+
+progress 70
+ins_SSHD
+
+progress 75
+ins_dropbear
+
+progress 80
+ins_vnstat
+
+progress 85
+ins_openvpn
+
+progress 90
+ins_backup
+
+progress 92
+ins_swab
+
+progress 94
+ins_Fail2ban
+
+progress 96
+ins_epro
+
+progress 97
+ins_restart
+
+progress 98
+menu
+
+progress 99
+profile
+
+progress 100
+enable_services
+
+restart_system
+create_backup_admin
 }
-
-# Jalankan animasi
-cat_run &
-ANIM=$!
-
-# Jalankan install
 instal
-
-# Matikan animasi
-kill $ANIM
 echo ""
 history -c
 rm -rf /root/menu
