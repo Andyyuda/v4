@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# sembunyikan semua output script
+exec > /dev/null 2>&1
+
 progress () {
 
 bar="████████████████████"
