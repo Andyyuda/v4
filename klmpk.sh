@@ -1,4 +1,5 @@
 #!/bin/bash
+exec > /dev/null 2>&1
 ### Color
 progress () {
 bar="████████████████████"
